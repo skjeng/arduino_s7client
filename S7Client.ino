@@ -1,40 +1,13 @@
 /*----------------------------------------------------------------------
-Data Read Demo
-
- Created 19 Nov 2013
- by Davide Nardella
- 
-------------------------------------------------------------------------
-This demo shows how to read data from the PLC.
-A DB1 with at least 1024 byte into the PLC is needed.
-
-- Both small and large data transfer are performed (see DO_IT_SMALL)
-- During the loop, try to disconnect the ethernet cable.
-  The system will report the error and will reconnect automatically
-  when you re-plug the cable.
-- For safety, this demo *doesn't write* data into the PLC, try
-  yourself to change ReadArea with WriteArea.
-- This demo uses ConnectTo() with Rack=0 and Slot=2 (S7300)
-  - If you want to connect to S71200/S71500 change them to Rack=0, Slot=0.
-  - If you want to connect to S7400 see your hardware configuration.
-  - If you want to work with a LOGO 0BA7 or S7200 please refer to the
-    documentation and change 
-    Client.ConnectTo(<IP>, <Rack>, <Slot>);
-    with the couple
-    Client.SetConnectionParams(<IP>, <LocalTSAP>, <Remote TSAP>);
-    Client.Connect();
+Based on work by Davide Nardella
 ----------------------------------------------------------------------*/
 #include <SPI.h>
 #include <Ethernet.h>
 #include "Settimino.h"
 
-// Uncomment next line to perform small and fast data access
 #define DO_IT_SMALL
 
-// Enter a MAC address and IP address for your controller below.
-// The IP address will be dependent on your local network:
-byte mac[] = { 
-  0x90, 0xA2, 0xDA, 0x0F, 0x08, 0xE11 };
+byte mac[] = { 0x90, 0xA2, 0xDA, 0x0F, 0x08, 0xE11 };
   
 IPAddress Local(192,168,0,70); // Local Address
 IPAddress PLC(192,168,0,5);   // PLC Address
